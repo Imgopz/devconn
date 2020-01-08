@@ -1,0 +1,3 @@
+{
+	"mongoURI": "mongodb://devconnector:dev123@ds139984.mlab.com:39984/devconnector"
+}
