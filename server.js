@@ -8,7 +8,7 @@ connectDB();
 // Init middleware
 app.use(express.json({ extended: false })); // to get the data from the each route.
 
-app.get('/', (req, res) => console.log("Api is running...!"));
+app.get('/', (req, res) => console.log("Api is running...!")); // test route
 
 //This will help us to follow RESTful routes
 app.use('/api/user', require('./routes/api/user'));
