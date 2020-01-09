@@ -9,6 +9,8 @@ const { check, validationResult } = require("express-validator/check") // these 
 const User = require("../../models/User")
 router.get('/', (req, res) => res.send("User route"));
 
+
+// Register user
 // mention the errors array as middleware in the request, and it will be populated in error array as defined below.
 router.post('/', [check("name", "Name is required!").not().isEmpty(), 
 				  check("email", "Please enter a valid email").isEmail(),
@@ -40,10 +42,10 @@ router.post('/', [check("name", "Name is required!").not().isEmpty(),
 		
 		const payload = { user:{ id: user.id } }; // take from promis from above step
 		
-		jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 3600 }, (err, token) => {  // import config package
+		jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 360000 }, (err, token) => {  // import config package
 			if(err) throw err; 
 			res.send({ token });
-		});
+		});  // create token and send it back to user and use it to protect the route
 
 	}catch(err){
 		console.error(err.message);
