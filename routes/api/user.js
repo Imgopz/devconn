@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config"); // required for jwt
 const { check, validationResult } = require("express-validator/check") // these methods are used to validate the fields
 
 const User = require("../../models/User")
@@ -34,9 +36,15 @@ router.post('/', [check("name", "Name is required!").not().isEmpty(),
 		user.password = await bcrypt.hash(password, salt) // hash it with password using bcrypt and assign to user.password
 		
 		//where ever we are getting promisses, put await over there
-		await user.save();
+		await user.save(); // this will give promise from the db you can use this id to create payload for jwt
 		
-		res.send("User Registered")
+		const payload = { user:{ id: user.id } }; // take from promis from above step
+		
+		jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 3600 }, (err, token) => {  // import config package
+			if(err) throw err; 
+			res.send({ token });
+		});
+
 	}catch(err){
 		console.error(err.message);
 		res.status(500).send("Server error")
