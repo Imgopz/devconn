@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const request = require("request"); // to make request to external API. here its git hub
+const config = require("config"); // get all the secret config here, in this case we are getting github id, secret
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator/check");
 
@@ -273,6 +275,30 @@ router.delete("/education/:edu_id", auth, async(req, res)=>{
 		res.json(profile);
 		
 	}catch (err) {
+		console.error(err.message);
+		res.status(500).send("Server error");
+	}
+});
+
+// get github repository for given user
+router.get("/github/:username", (req, res) => {
+	try {
+		const options = {
+			uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get("githubClientId")}&client_secret=${config.get("githubSecret")}`,
+			method: "GET",
+			headers: {'user-agent':'node.js'}
+		}
+		
+		request(options, (error, response, body) => {
+			if(error) console.error(error);
+			
+			if(response.statusCode != 200){
+				return res.status(404).json({ msg: "No git profile found" });
+			}
+			
+			res.json(JSON.parse(body)); // to parse the result
+		});
+	} catch (err) {
 		console.error(err.message);
 		res.status(500).send("Server error");
 	}
