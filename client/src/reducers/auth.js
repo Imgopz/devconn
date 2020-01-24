@@ -13,7 +13,7 @@ export default function(state=initialState, action){
 	switch(type){
 		
 		case USER_LOADED:
-			return {...state, ...payload, isAuthenticated: true, loading: false}
+			return {...state, ...payload, isAuthenticated: true, loading: false, user: payload}
 		case REGISTER_SUCCESS:
 		case LOGIN_SUCCESS:
 			localStorage.setItem('token', payload.token)
