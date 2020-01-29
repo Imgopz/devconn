@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getCurrentProfile } from '../../actions/profile'
 import DashboardActions from './DashboardActions'
+import Experience from './Experience'
+import Education from './Education'
 import Spinner from '../layout/Spinner'
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading }}) => {
@@ -15,12 +17,18 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
 		<p className='lead'>
 			<i className='fa fa-user'>{' '}</i>Welcome { user && user.name }
 		</p>
-		{ profile !== null ? (<Fragment><DashboardActions /></Fragment>) : 
-		(<Fragment>
-			<p>You have not yet set up a profile, please create one.</p>
-			<Link to='/create-profile' className="btn btn-primary my-1">Create Profile</Link>
-		</Fragment>)}
-	</Fragment>
+		
+		{ profile !== null ? (
+			<Fragment>
+				<DashboardActions />
+				<Experience experience={profile.experience}/>
+				<Education education={profile.education}/>
+			</Fragment>) : 
+			(<Fragment>
+				<p>You have not yet set up a profile, please create one.</p>
+				<Link to='/create-profile' className="btn btn-primary my-1">Create Profile</Link>
+			</Fragment>)}
+			</Fragment>
 }
 
 Dashboard.propTypes = {
