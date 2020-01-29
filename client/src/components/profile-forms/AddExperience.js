@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { addExperience } from '../../actions/profile'
 
-const AddExperience = (props) => {
+const AddExperience = ({ addExperience, history }) => {
 	
 	const [ formData, setFormData ] = useState({
 		company:'',
@@ -30,11 +30,14 @@ const AddExperience = (props) => {
 		   Add An Experience
 		  </h1>
 		  <p className="lead">
-			<i className="fa fa-code-branch"></i> Add any developer/programming
+			<i className="fa fa-code-fork"></i> Add any developer/programming
 			positions that you have had in the past
 		  </p>
 		  <small>* = required field</small>
-		  <form className="form">
+		  <form className="form" onSubmit={e => {
+					e.preventDefault();
+					addExperience(formData, history) 
+			}} >
 			<div className="form-group">
 			  <input type="text" placeholder="* Job Title" name="title" value={title} onChange={e => onChange(e)} required />
 			</div>
@@ -78,4 +81,4 @@ AddExperience.propTypes = {
 	addExperience: PropTypes.func.isRequired
 }
 
-export default connect(null, { addExperience } )(AddExperience);
+export default connect(null, { addExperience } )(withRouter(AddExperience));
