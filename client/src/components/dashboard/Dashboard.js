@@ -10,7 +10,7 @@ import Spinner from '../layout/Spinner'
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading }, deleteAccount}) => {
 	
-	useEffect(() => { getCurrentProfile() }, [] )
+	useEffect(() => { getCurrentProfile() }, [getCurrentProfile] )
 	
 	return loading && profile === null ? <Spinner /> : <Fragment>
 		<h1 className='large text-primary'>Dashboard</h1>
