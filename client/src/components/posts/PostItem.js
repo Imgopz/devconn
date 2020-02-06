@@ -50,7 +50,9 @@ const PostItem = ({ addLikes, removeLikes, auth, post: { _id, text, name, avatar
 
 PostItem.propTypes = {
 	post: PropTypes.object.isRequired,
-	auth: PropTypes.object.isRequired
+	auth: PropTypes.object.isRequired,
+	addLikes: PropTypes.func.isRequired,
+	removeLikes: PropTypes.func.isRequired,
 }	
 
 const mapStateToProps = state => ({
