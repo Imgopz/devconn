@@ -164,7 +164,7 @@ router.post("/comment/:id", [ auth, [ check("text", "Comment cannot be empty").n
 		post.comments.unshift(newComment);
 		
 		await post.save();		
-		res.json(post);
+		res.json(post.comments);
 		
 	} catch (err) {
 		console.error(err.message);
