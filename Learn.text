@@ -15,6 +15,6 @@ Learn 7 - Connectiong MongoDB with mongoose.
 5. Use it in server.js file to check if it's connected or not by running the application.
 
 Learn 8 - Router files with Express Router
-1. Create routes->api->auth.js, user.js, profile.js, and post.js hirarchy
+1. Create routes->api->auth.js, user.js, profile.js, and post.js hierarchy
 2. Define common routes for all the endpoint in server.js file.
 3. Router function in express library is used to create all the end points.
