@@ -1,4 +1,3 @@
 node_modules/
 .git/
 ./client/node_modules/
-config/default.json
