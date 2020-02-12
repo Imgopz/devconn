@@ -19,3 +19,4 @@ Learn 8 - Router files with Express Router
 2. Define common routes for all the endpoint in server.js file.
 3. Router function in express library is used to create all the end points.
 
+sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ gnupg-agent \ software-properties-common
