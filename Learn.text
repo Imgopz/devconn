@@ -1,0 +1,21 @@
+Backend:
+Learn 6 - Install dependencies & Basic Express Setup.
+1. Create a folder .gitignore.
+2. git init.
+3. npm init.
+4. npm i express exress-validator bcryptjs config gravatar jsonwebtoken mongoose request.
+5. npm i -D nodemon concurrently.
+6. create server.js file and create simple API.
+
+Learn 7 - Connectiong MongoDB with mongoose.
+1. The config library will look for config folder in the server, and it will look for default.json file by default.
+2. Create config folder and default.jsonf in it.
+3. Copy the mongoUri and put in the file.
+4. Create and export connect DB function in db.js file in the same folder.
+5. Use it in server.js file to check if it's connected or not by running the application.
+
+Learn 8 - Router files with Express Router
+1. Create routes->api->auth.js, user.js, profile.js, and post.js hirarchy
+2. Define common routes for all the endpoint in server.js file.
+3. Router function in express library is used to create all the end points.
+
